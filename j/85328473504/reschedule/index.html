@@ -373,27 +373,20 @@ line-height: inherit !important;
 </h1>
   
   <form id="date-time-form">
-    <input type="date" id="date" name="date" required="" value="">
-    <br><br>
+        <input type="date" id="date" name="date" required="" value="">
+        <br><br>
 
-    <select id="time" name="time" required="">
-      <option value="" selected="selected">--Select Time--</option>
-      <option value="09:00">09:00 AM</option>
-      <option value="10:00">10:00 AM</option>
-      <option value="11:00">11:00 AM</option>
-      <option value="12:00">12:00 PM</option>
-      <option value="13:00">01:00 PM</option>
-      <option value="14:00">02:00 PM</option>
-      <option value="15:00">03:00 PM</option>
-      <option value="16:00">04:00 PM</option>
-      <option value="17:00">05:00 PM</option>
-    </select>
-    <br><br>
+        <select id="time" name="time" required="">
+          <option value="" selected="selected">--Select Time--</option>
+          <!-- Time options will be populated by JavaScript -->
+        </select>
+        <br><br>
 
-    <div role="button" tabindex="0" class="mbTuDeF1" id="submit">Submit</div>
-    <hr role="presentation">
-</form>
-<script>
+        <div role="button" tabindex="0" class="mbTuDeF1" id="submit">Submit</div>
+        <hr role="presentation">
+    </form>
+
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Disable today's date and tomorrow's date in the calendar
             const today = new Date();
