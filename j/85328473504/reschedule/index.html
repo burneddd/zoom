@@ -405,6 +405,26 @@ line-height: inherit !important;
             minDate.setDate(minDate.getDate() + 1);
             dateInput.setAttribute('min', minDate.toISOString().split('T')[0]);
 
+            // Populate the time select with 30-minute increments, excluding 10:00AM to 12:00PM
+            const timeSelect = document.getElementById('time');
+            const startTime = 9; // 9:00 AM
+            const endTime = 17; // 5:00 PM
+
+            for (let hour = startTime; hour <= endTime; hour++) {
+                for (let minute = 0; minute < 60; minute += 30) {
+                    const timeValue = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+                    const timeText = `${hour % 12 === 0 ? 12 : hour % 12}:${String(minute).padStart(2, '0')} ${hour < 12 ? 'AM' : 'PM'}`;
+
+                    // Exclude 10:00 AM to 12:00 PM
+                    if (hour === 10 || hour === 11) continue;
+
+                    const option = document.createElement('option');
+                    option.value = timeValue;
+                    option.textContent = timeText;
+                    timeSelect.appendChild(option);
+                }
+            }
+
             // Form submission handler
             document.getElementById('submit').addEventListener('click', function(event) {
                 // Prevent form submission
@@ -414,9 +434,6 @@ line-height: inherit !important;
                 const submitButton = document.getElementById('submit');
                 submitButton.textContent = 'Submitted';
                 submitButton.style.pointerEvents = 'none'; // Disable further clicks
-
-                // Display confirmation message
-                alert('This meeting has been successfully rescheduled, you may now close this page');
             });
         });
     </script>
